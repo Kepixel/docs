@@ -1,0 +1,759 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>kepixel js Tracking Functions Examples</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            margin: 0;
+            padding: 20px;
+            color: #333;
+        }
+        h1 {
+            color: #2c3e50;
+            border-bottom: 2px solid #3498db;
+            padding-bottom: 10px;
+        }
+        h2 {
+            color: #3498db;
+            margin-top: 30px;
+        }
+        pre {
+            background-color: #f8f9fa;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            padding: 15px;
+            overflow: auto;
+        }
+        code {
+            font-family: Consolas, Monaco, 'Andale Mono', monospace;
+        }
+        .example-container {
+            margin-bottom: 30px;
+            padding: 15px;
+            border: 1px solid #e0e0e0;
+            border-radius: 5px;
+            background-color: #f9f9f9;
+        }
+        .example-description {
+            margin-bottom: 10px;
+        }
+        button {
+            background-color: #3498db;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            border-radius: 4px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        button:hover {
+            background-color: #2980b9;
+        }
+    </style>
+</head>
+<body>
+    <h1>Anubis Tracking Functions Examples</h1>
+
+    <p>This page provides examples of how to use each tracking function in the Anubis tracking library.</p>
+
+    <!-- Kepixel -->
+    <script>
+        var _paq = window._paq = window._paq || [];
+        _paq.push(['trackPageView']);
+        _paq.push(['enableLinkTracking']);
+        (function() {
+            _paq.push(['setAppId', 'YOUR_APP_ID']);
+            var d=document, g=d.createElement('script'), s=d.getElementsByTagName('script')[0];
+            g.async=true; g.src='https://edge.kepixel.com/anubis.js'; s.parentNode.insertBefore(g,s);
+        })();
+    </script>
+    <!-- End kepixel Code -->
+
+    <!-- Common test data -->
+    <script>
+        // Sample items for e-commerce tracking
+        var testItems = [
+            {
+                id: "123",
+                name: "Test Product",
+                price: 19.99,
+                quantity: 2
+            },
+            {
+                id: "456",
+                name: "Another Product",
+                price: 29.99,
+                quantity: 1
+            }
+        ];
+
+        // Valid user_data object with required properties
+        var validUserData = {
+            email: "test@example.com",
+            phone: "1234567890",
+            name: "Test User",
+            id: "user123"
+        };
+
+        // Custom data for examples
+        var customData = {
+            source: "example_page",
+            session_id: "abc123"
+        };
+
+        // Function to display the code being executed
+        function showCode(code) {
+            return code.toString().split('\n').slice(1, -1).join('\n');
+        }
+
+        // Function to execute tracking and show the code
+        function executeTracking(trackingFunction, codeElementId) {
+            var codeElement = document.getElementById(codeElementId);
+            if (codeElement) {
+                codeElement.textContent = showCode(trackingFunction);
+            }
+            trackingFunction();
+        }
+    </script>
+
+    <!-- trackPurchase Example -->
+    <div class="example-container">
+        <h2>trackPurchase</h2>
+        <div class="example-description">
+            <p>Records a purchase event with order ID, currency, value, items, description, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackPurchaseCode"></code></pre>
+        <button onclick="executeTracking(trackPurchaseExample, 'trackPurchaseCode')">Run Example</button>
+        <script>
+            function trackPurchaseExample() {
+                _paq.push(['trackPurchase',
+                    'ORDER123',                // order_id
+                    'USD',                     // currency
+                    69.97,                     // value
+                    testItems,                 // items
+                    'Example purchase',        // description
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackAddToCart Example -->
+    <div class="example-container">
+        <h2>trackAddToCart</h2>
+        <div class="example-description">
+            <p>Records an add to cart event with currency, value, items, description, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackAddToCartCode"></code></pre>
+        <button onclick="executeTracking(trackAddToCartExample, 'trackAddToCartCode')">Run Example</button>
+        <script>
+            function trackAddToCartExample() {
+                _paq.push(['trackAddToCart',
+                    'USD',                     // currency
+                    49.98,                     // value
+                    testItems,                 // items
+                    'Example add to cart',     // description
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackViewContent Example -->
+    <div class="example-container">
+        <h2>trackViewContent</h2>
+        <div class="example-description">
+            <p>Records a view content event with content ID, name, currency, type, value, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackViewContentCode"></code></pre>
+        <button onclick="executeTracking(trackViewContentExample, 'trackViewContentCode')">Run Example</button>
+        <script>
+            function trackViewContentExample() {
+                _paq.push(['trackViewContent',
+                    '123',                     // id
+                    'Test Product',            // name
+                    'USD',                     // currency
+                    'product',                 // type
+                    19.99,                     // value
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackCompleteRegistration Example -->
+    <div class="example-container">
+        <h2>trackCompleteRegistration</h2>
+        <div class="example-description">
+            <p>Records a complete registration event with parameters, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackCompleteRegistrationCode"></code></pre>
+        <button onclick="executeTracking(trackCompleteRegistrationExample, 'trackCompleteRegistrationCode')">Run Example</button>
+        <script>
+            function trackCompleteRegistrationExample() {
+                _paq.push(['trackCompleteRegistration',
+                    {method: 'email'},         // params
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackSearch Example -->
+    <div class="example-container">
+        <h2>trackSearch</h2>
+        <div class="example-description">
+            <p>Records a search event with search string, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackSearchCode"></code></pre>
+        <button onclick="executeTracking(trackSearchExample, 'trackSearchCode')">Run Example</button>
+        <script>
+            function trackSearchExample() {
+                _paq.push(['trackSearch',
+                    'example search query',    // search_string
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackInitiateCheckout Example -->
+    <div class="example-container">
+        <h2>trackInitiateCheckout</h2>
+        <div class="example-description">
+            <p>Records an initiate checkout event with value, currency, items, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackInitiateCheckoutCode"></code></pre>
+        <button onclick="executeTracking(trackInitiateCheckoutExample, 'trackInitiateCheckoutCode')">Run Example</button>
+        <script>
+            function trackInitiateCheckoutExample() {
+                _paq.push(['trackInitiateCheckout',
+                    69.97,                     // value
+                    'USD',                     // currency
+                    testItems,                 // items
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackAddPaymentInfo Example -->
+    <div class="example-container">
+        <h2>trackAddPaymentInfo</h2>
+        <div class="example-description">
+            <p>Records an add payment info event with value, currency, items, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackAddPaymentInfoCode"></code></pre>
+        <button onclick="executeTracking(trackAddPaymentInfoExample, 'trackAddPaymentInfoCode')">Run Example</button>
+        <script>
+            function trackAddPaymentInfoExample() {
+                _paq.push(['trackAddPaymentInfo',
+                    69.97,                     // value
+                    'USD',                     // currency
+                    testItems,                 // items
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackSignUp Example -->
+    <div class="example-container">
+        <h2>trackSignUp</h2>
+        <div class="example-description">
+            <p>Records a sign up event with user data and custom data.</p>
+        </div>
+        <pre><code id="trackSignUpCode"></code></pre>
+        <button onclick="executeTracking(trackSignUpExample, 'trackSignUpCode')">Run Example</button>
+        <script>
+            function trackSignUpExample() {
+                _paq.push(['trackSignUp',
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackPage Example -->
+    <div class="example-container">
+        <h2>trackPage</h2>
+        <div class="example-description">
+            <p>Records a page view event with page ID, name, category, type, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackPageCode"></code></pre>
+        <button onclick="executeTracking(trackPageExample, 'trackPageCode')">Run Example</button>
+        <script>
+            function trackPageExample() {
+                _paq.push(['trackPage',
+                    'page123',                 // id
+                    'Example Page',            // name
+                    'content',                 // category
+                    'article',                 // type
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackListView Example -->
+    <div class="example-container">
+        <h2>trackListView</h2>
+        <div class="example-description">
+            <p>Records a list view event with list ID, name, category, type, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackListViewCode"></code></pre>
+        <button onclick="executeTracking(trackListViewExample, 'trackListViewCode')">Run Example</button>
+        <script>
+            function trackListViewExample() {
+                _paq.push(['trackListView',
+                    'list123',                 // id
+                    'Featured Products',       // name
+                    'products',                // category
+                    'featured',                // type
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackAddToWishlist Example -->
+    <div class="example-container">
+        <h2>trackAddToWishlist</h2>
+        <div class="example-description">
+            <p>Records an add to wishlist event with items, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackAddToWishlistCode"></code></pre>
+        <button onclick="executeTracking(trackAddToWishlistExample, 'trackAddToWishlistCode')">Run Example</button>
+        <script>
+            function trackAddToWishlistExample() {
+                _paq.push(['trackAddToWishlist',
+                    testItems,                 // items
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackAppOpen Example -->
+    <div class="example-container">
+        <h2>trackAppOpen</h2>
+        <div class="example-description">
+            <p>Records an app open event with user data and custom data.</p>
+        </div>
+        <pre><code id="trackAppOpenCode"></code></pre>
+        <button onclick="executeTracking(trackAppOpenExample, 'trackAppOpenCode')">Run Example</button>
+        <script>
+            function trackAppOpenExample() {
+                _paq.push(['trackAppOpen',
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackContact Example -->
+    <div class="example-container">
+        <h2>trackContact</h2>
+        <div class="example-description">
+            <p>Records a contact event with user data and custom data.</p>
+        </div>
+        <pre><code id="trackContactCode"></code></pre>
+        <button onclick="executeTracking(trackContactExample, 'trackContactCode')">Run Example</button>
+        <script>
+            function trackContactExample() {
+                _paq.push(['trackContact',
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackLogin Example -->
+    <div class="example-container">
+        <h2>trackLogin</h2>
+        <div class="example-description">
+            <p>Records a login event with user data and custom data.</p>
+        </div>
+        <pre><code id="trackLoginCode"></code></pre>
+        <button onclick="executeTracking(trackLoginExample, 'trackLoginCode')">Run Example</button>
+        <script>
+            function trackLoginExample() {
+                _paq.push(['trackLogin',
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- trackCustomEvent Example -->
+    <div class="example-container">
+        <h2>trackCustomEvent</h2>
+        <div class="example-description">
+            <p>Records a custom event with parameters, user data, and custom data.</p>
+        </div>
+        <pre><code id="trackCustomEventCode"></code></pre>
+        <button onclick="executeTracking(trackCustomEventExample, 'trackCustomEventCode')">Run Example</button>
+        <script>
+            function trackCustomEventExample() {
+                _paq.push(['trackCustomEvent',
+                    {event_name: 'example_event', category: 'examples'}, // params
+                    validUserData,             // user_data
+                    customData                 // custom_data
+                ]);
+            }
+        </script>
+    </div>
+
+    <!-- enableHeartBeatTimer Example -->
+    <div class="example-container">
+        <h2>enableHeartBeatTimer</h2>
+        <div class="example-description">
+            <p>Accurately measures the time spent on each page by sending heart beat requests when the user is actively viewing the page.</p>
+        </div>
+        <pre><code id="enableHeartBeatTimerCode"></code></pre>
+        <button onclick="executeTracking(enableHeartBeatTimerExample, 'enableHeartBeatTimerCode')">Run Example</button>
+        <script>
+            function enableHeartBeatTimerExample() {
+                // Default: 15 seconds minimum active time before sending heart beat
+                _paq.push(['enableHeartBeatTimer']);
+
+                // Or with custom minimum active time (30 seconds in this example)
+                // _paq.push(['enableHeartBeatTimer', 30]);
+            }
+        </script>
+    </div>
+
+    <!-- disableHeartBeatTimer Example -->
+    <div class="example-container">
+        <h2>disableHeartBeatTimer</h2>
+        <div class="example-description">
+            <p>Disables the heart beat timer if it was previously enabled.</p>
+        </div>
+        <pre><code id="disableHeartBeatTimerCode"></code></pre>
+        <button onclick="executeTracking(disableHeartBeatTimerExample, 'disableHeartBeatTimerCode')">Run Example</button>
+        <script>
+            function disableHeartBeatTimerExample() {
+                _paq.push(['disableHeartBeatTimer']);
+            }
+        </script>
+    </div>
+
+    <!-- setUserId Example -->
+    <div class="example-container">
+        <h2>setUserId</h2>
+        <div class="example-description">
+            <p>Sets a unique and persistent identifier for the current user. This should be an email address or username from your authentication system.</p>
+            <p><strong>Important:</strong> You must set the user ID for each pageview, otherwise the pageview will be tracked without the user ID.</p>
+        </div>
+        <pre><code id="setUserIdCode"></code></pre>
+        <button onclick="executeTracking(setUserIdExample, 'setUserIdCode')">Run Example</button>
+        <script>
+            function setUserIdExample() {
+                // Set the user ID
+                _paq.push(['setUserId', 'user@example.com']);
+
+                // Track a page view with the user ID set
+                _paq.push(['trackPageView']);
+            }
+        </script>
+    </div>
+
+    <!-- E-commerce Tracking Examples -->
+    <h1>E-commerce Tracking Examples</h1>
+    <p>These examples demonstrate how to use Anubis.js for tracking e-commerce activities.</p>
+
+    <!-- setEcommerceView Example -->
+    <div class="example-container">
+        <h2>setEcommerceView</h2>
+        <div class="example-description">
+            <p>Sets the current page view as a product or category page view. Must be called before trackPageView.</p>
+        </div>
+        <pre><code id="setEcommerceViewCode"></code></pre>
+        <button onclick="executeTracking(setEcommerceViewProductExample, 'setEcommerceViewCode')">Run Product Example</button>
+        <button onclick="executeTracking(setEcommerceViewCategoryExample, 'setEcommerceViewCode')">Run Category Example</button>
+        <script>
+            function setEcommerceViewProductExample() {
+                // Track a product view
+                _paq.push(['setEcommerceView',
+                    "SKU123",                  // (Required) Product SKU
+                    "Awesome Product",         // (Optional) Product name
+                    ["Category1", "Category2"], // (Optional) Product category or array of up to 5 categories
+                    29.99                      // (Optional) Product price
+                ]);
+
+                // You must call trackPageView after setEcommerceView
+                _paq.push(['trackPageView']);
+
+                console.log("Product view tracked");
+            }
+
+            function setEcommerceViewCategoryExample() {
+                // Track a category view
+                _paq.push(['setEcommerceView',
+                    false,                     // Product SKU - false for category view
+                    false,                     // Product name - false for category view
+                    "Electronics"              // (Required) Product category
+                ]);
+
+                // You must call trackPageView after setEcommerceView
+                _paq.push(['trackPageView']);
+
+                console.log("Category view tracked");
+            }
+        </script>
+    </div>
+
+    <!-- addEcommerceItem Example -->
+    <div class="example-container">
+        <h2>addEcommerceItem</h2>
+        <div class="example-description">
+            <p>Adds an item to the internal ecommerce cart for tracking. Must be called before trackEcommerceCartUpdate or trackEcommerceOrder.</p>
+        </div>
+        <pre><code id="addEcommerceItemCode"></code></pre>
+        <button onclick="executeTracking(addEcommerceItemExample, 'addEcommerceItemCode')">Run Example</button>
+        <script>
+            function addEcommerceItemExample() {
+                // Clear previous items (optional)
+                _paq.push(['clearEcommerceCart']);
+
+                // Add items to cart
+                _paq.push(['addEcommerceItem',
+                    "SKU123",                  // (Required) Product SKU
+                    "Awesome Product",         // (Optional) Product name
+                    ["Category1", "Category2"], // (Optional) Product category or array of up to 5 categories
+                    29.99,                     // (Optional) Product price
+                    2                          // (Optional) Product quantity (defaults to 1)
+                ]);
+
+                _paq.push(['addEcommerceItem',
+                    "SKU456",                  // (Required) Product SKU
+                    "Another Product",         // (Optional) Product name
+                    "Category3",               // (Optional) Product category
+                    19.99,                     // (Optional) Product price
+                    1                          // (Optional) Product quantity
+                ]);
+
+                console.log("Items added to ecommerce cart");
+
+                // Note: You must call trackEcommerceCartUpdate or trackEcommerceOrder
+                // after adding items to actually track them
+            }
+        </script>
+    </div>
+
+    <!-- trackEcommerceCartUpdate Example -->
+    <div class="example-container">
+        <h2>trackEcommerceCartUpdate</h2>
+        <div class="example-description">
+            <p>Tracks a shopping cart update. Call this after adding items with addEcommerceItem.</p>
+        </div>
+        <pre><code id="trackEcommerceCartUpdateCode"></code></pre>
+        <button onclick="executeTracking(trackEcommerceCartUpdateExample, 'trackEcommerceCartUpdateCode')">Run Example</button>
+        <script>
+            function trackEcommerceCartUpdateExample() {
+                // Clear previous items
+                _paq.push(['clearEcommerceCart']);
+
+                // Add items to cart
+                _paq.push(['addEcommerceItem',
+                    "SKU123",                  // (Required) Product SKU
+                    "Awesome Product",         // (Optional) Product name
+                    ["Category1", "Category2"], // (Optional) Product category
+                    29.99,                     // (Optional) Product price
+                    2                          // (Optional) Product quantity
+                ]);
+
+                _paq.push(['addEcommerceItem',
+                    "SKU456",                  // (Required) Product SKU
+                    "Another Product",         // (Optional) Product name
+                    "Category3",               // (Optional) Product category
+                    19.99,                     // (Optional) Product quantity
+                    1                          // (Optional) Product quantity
+                ]);
+
+                // Calculate cart total
+                var cartTotal = (29.99 * 2) + (19.99 * 1);
+
+                // Track the cart update with the total value
+                _paq.push(['trackEcommerceCartUpdate', cartTotal]);
+
+                console.log("Cart update tracked with total: $" + cartTotal);
+            }
+        </script>
+    </div>
+
+    <!-- trackEcommerceOrder Example -->
+    <div class="example-container">
+        <h2>trackEcommerceOrder</h2>
+        <div class="example-description">
+            <p>Tracks an e-commerce order. Call this after adding items with addEcommerceItem.</p>
+        </div>
+        <pre><code id="trackEcommerceOrderCode"></code></pre>
+        <button onclick="executeTracking(trackEcommerceOrderExample, 'trackEcommerceOrderCode')">Run Example</button>
+        <script>
+            function trackEcommerceOrderExample() {
+                // Clear previous items
+                _paq.push(['clearEcommerceCart']);
+
+                // Add items to order
+                _paq.push(['addEcommerceItem',
+                    "SKU123",                  // (Required) Product SKU
+                    "Awesome Product",         // (Optional) Product name
+                    ["Category1", "Category2"], // (Optional) Product category
+                    29.99,                     // (Optional) Product price
+                    2                          // (Optional) Product quantity
+                ]);
+
+                _paq.push(['addEcommerceItem',
+                    "SKU456",                  // (Required) Product SKU
+                    "Another Product",         // (Optional) Product name
+                    "Category3",               // (Optional) Product category
+                    19.99,                     // (Optional) Product price
+                    1                          // (Optional) Product quantity
+                ]);
+
+                // Calculate values
+                var subtotal = (29.99 * 2) + (19.99 * 1);
+                var tax = subtotal * 0.08; // 8% tax
+                var shipping = 5.99;
+                var discount = 10.00;
+                var grandTotal = subtotal + tax + shipping - discount;
+
+                // Track the order
+                _paq.push(['trackEcommerceOrder',
+                    "ORDER12345",              // (Required) Order ID
+                    grandTotal,                // (Required) Grand total
+                    subtotal,                  // (Optional) Subtotal
+                    tax,                       // (Optional) Tax
+                    shipping,                  // (Optional) Shipping
+                    discount                   // (Optional) Discount
+                ]);
+
+                console.log("Order tracked with total: $" + grandTotal.toFixed(2));
+            }
+        </script>
+    </div>
+
+    <!-- Complete E-commerce Flow Example -->
+    <div class="example-container">
+        <h2>Complete E-commerce Flow</h2>
+        <div class="example-description">
+            <p>A real-world example showing a complete e-commerce flow with error handling.</p>
+        </div>
+        <pre><code id="completeEcommerceFlowCode"></code></pre>
+        <button onclick="executeTracking(completeEcommerceFlowExample, 'completeEcommerceFlowCode')">Run Example</button>
+        <script>
+            function completeEcommerceFlowExample() {
+                try {
+                    // 1. Track product view
+                    console.log("Step 1: User views a product");
+                    _paq.push(['setEcommerceView',
+                        "SKU123",                  // Product SKU
+                        "Awesome Product",         // Product name
+                        ["Electronics", "Gadgets"], // Product categories
+                        29.99                      // Product price
+                    ]);
+                    _paq.push(['trackPageView']);
+
+                    // 2. Add to cart
+                    console.log("Step 2: User adds product to cart");
+                    _paq.push(['clearEcommerceCart']);
+                    _paq.push(['addEcommerceItem',
+                        "SKU123",                  // Product SKU
+                        "Awesome Product",         // Product name
+                        ["Electronics", "Gadgets"], // Product categories
+                        29.99,                     // Product price
+                        1                          // Product quantity
+                    ]);
+
+                    // Track cart update
+                    _paq.push(['trackEcommerceCartUpdate', 29.99]);
+
+                    // 3. User continues shopping and views another product
+                    console.log("Step 3: User views another product");
+                    _paq.push(['setEcommerceView',
+                        "SKU456",                  // Product SKU
+                        "Another Product",         // Product name
+                        "Accessories",             // Product category
+                        19.99                      // Product price
+                    ]);
+                    _paq.push(['trackPageView']);
+
+                    // 4. User adds second product to cart
+                    console.log("Step 4: User adds second product to cart");
+                    // Note: We don't clear the cart here because we're adding to existing cart
+                    _paq.push(['addEcommerceItem',
+                        "SKU456",                  // Product SKU
+                        "Another Product",         // Product name
+                        "Accessories",             // Product category
+                        19.99,                     // Product price
+                        1                          // Product quantity
+                    ]);
+
+                    // Calculate new cart total
+                    var cartTotal = 29.99 + 19.99;
+
+                    // Track updated cart
+                    _paq.push(['trackEcommerceCartUpdate', cartTotal]);
+
+                    // 5. User proceeds to checkout
+                    console.log("Step 5: User proceeds to checkout");
+
+                    // 6. User completes order
+                    console.log("Step 6: User completes order");
+
+                    // Calculate values for order
+                    var subtotal = cartTotal;
+                    var tax = subtotal * 0.08; // 8% tax
+                    var shipping = 5.99;
+                    var discount = 10.00;
+                    var grandTotal = subtotal + tax + shipping - discount;
+
+                    // Track the completed order
+                    _paq.push(['trackEcommerceOrder',
+                        "ORDER" + new Date().getTime(),  // Generate unique order ID
+                        grandTotal,                // Grand total
+                        subtotal,                  // Subtotal
+                        tax,                       // Tax
+                        shipping,                  // Shipping
+                        discount                   // Discount
+                    ]);
+
+                    console.log("Complete e-commerce flow tracked successfully!");
+                    console.log("Order total: $" + grandTotal.toFixed(2));
+
+                } catch (error) {
+                    // Error handling
+                    console.error("Error tracking e-commerce flow:", error);
+
+                    // Send error to analytics
+                    _paq.push(['trackEvent',
+                        'Error',
+                        'E-commerce Tracking',
+                        error.message
+                    ]);
+                }
+            }
+        </script>
+    </div>
+
+</body>
+</html>
