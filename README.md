@@ -57,7 +57,7 @@ _paq.push(['trackPurchase', 'ORDER123', 'USD', 69.97, items, 'Example purchase',
 
 ## Documentation
 
-For detailed documentation on how to use the Kepixel tracking libraries, please refer to our [JavaScript Tracking Documentation](js-documentation.md) for web tracking and our Mobile SDKs documentation for iOS and Android apps. For interactive examples of the JavaScript tracking functions, check out our [JavaScript Examples](js_examples.html) page.
+For detailed documentation on how to use the Kepixel tracking libraries, please refer to our [JavaScript Tracking Documentation](js-documentation.md) for web tracking and our [React Native Documentation](react-native-documentation.md) for mobile app tracking. For interactive examples, check out our [JavaScript Examples](js_examples.html) and [React Native Examples](react-native-examples.md) pages.
 
 The documentation covers:
 - Installation and configuration
